@@ -4,5 +4,6 @@
 	<classpathentry kind="src" path="src"/>
 	<classpathentry kind="lib" path="/Users/vishal/Downloads/selenium-server-standalone-3.9.1.jar"/>
 	<classpathentry kind="lib" path="/Users/vishal/Downloads/selenium-server-3.9.1.zip"/>
+	<classpathentry kind="lib" path="/Users/vishal/Downloads/ngwebdriver-1.1.6.jar"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>
