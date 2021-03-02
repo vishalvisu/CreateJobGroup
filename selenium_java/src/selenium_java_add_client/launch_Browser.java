@@ -10,15 +10,20 @@ import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.support.ui.ExpectedCondition;
+import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.WebDriverWait;
 
 import com.gargoylesoftware.htmlunit.javascript.background.JavaScriptExecutor;
 import com.paulhammant.ngwebdriver.NgWebDriver;
+
+import io.github.bonigarcia.wdm.WebDriverManager;
 
 public class launch_Browser {
 
 	//public static WebDriver driver=null ; 
 	
-	static  int sleep_time=1000;
+	static  int sleep_time=3000;
     static List<WebElement> list[];
 	
 	public static void main(String[] args) throws InterruptedException {
@@ -26,9 +31,14 @@ public class launch_Browser {
 		
 System.setProperty("webdriver.chrome.driver","/usr/local/bin/chromedriver");		
     
-    WebDriver driver= new ChromeDriver();
+ //   WebDriver driver= new ChromeDriver();
+    
+      WebDriverManager.chromedriver().setup();	
+      WebDriver driver=new ChromeDriver();
+
     NgWebDriver ngdriver;
     JavascriptExecutor jsdriver;
+   
     
     jsdriver= (JavascriptExecutor) driver;
     ngdriver= new NgWebDriver(jsdriver) ;
@@ -55,14 +65,20 @@ System.setProperty("webdriver.chrome.driver","/usr/local/bin/chromedriver");
        
        driver.findElement(By.className("mat-raised-button")).click();;
      //  ngdriver.waitForAngularRequestsToFinish();
+       
       
       
-     try {
+      
+  /*   try {
 		Thread.sleep(2000);
 	} catch (InterruptedException e) {
 		// TODO Auto-generated catch block
 		e.printStackTrace();
-	}
+	}*/
+       
+   
+     
+     new WebDriverWait(driver,2000).until(ExpectedConditions.urlContains("client"));
          
      
      System.out.println(driver.getCurrentUrl());
@@ -83,59 +99,77 @@ System.setProperty("webdriver.chrome.driver","/usr/local/bin/chromedriver");
 
    // List<ArrayList<WebElement>> list = new ArrayList<ArrayList<WebElement>>();
     
-    int row=1;
-    for (WebElement e  : childs)
-    {
+    int row=1;   WebElement e;
+  //  for (WebElement e  : childs)
+    //{
     	List<WebElement> list= new ArrayList<WebElement>();
     	
        // System.out.println(e.findElements(By.tagName("input")).size());
-        
-    	list=  e.findElements(By.tagName("input"));
+      
+    
+    
+    	//list=  e.findElements(By.tagName("input"));
         
         
       //  System.out.println(list.size());
              //cnt++;
          
-        if(row==1)
-        {	
+    //    if(row==1)
+      //  {	
+    	  e= childs.get(0);
+    	  list=  e.findElements(By.tagName("input"));
         	list.get(0).sendKeys("ABC");
             list.get(1).sendKeys("DEF");
             
-        }
-        if(row==2)
-        {
+       // }
+     //   if(row==2)
+       // {
+            e= childs.get(1);
+      	  list=  e.findElements(By.tagName("input"));
+            
         	list.get(0).sendKeys("GHI");
         	
         	e.findElement(By.tagName("jv-multiselect")).click();
         	searchDropdownComboExecutor ("mat-select-content",driver);
         	
         	
-        }
-        if(row==3)
-        {
+        //}
+       // if(row==3)
+       // {
+        	e= childs.get(2);
+        	 list=  e.findElements(By.tagName("input"));
+        	
         	e.findElement(By.tagName("jv-multiselect")).click();
         	searchDropdownComboExecutor ("mat-select-content",driver);
+        
         	list.get(0).sendKeys("www.google.com");
         //	break;
-        }
+       // }*/
         
       
-        if(row==4)
-        {
+    //    if(row==4)
+      //  {
+        	e= childs.get(3);
+       	// list=  e.findElements(By.tagName("input"));
+       	 
+        
         	list=  e.findElements(By.tagName("mat-form-field"));
         	
         	
         	list.get(0).click(); 
         	DropDownExecutor ("mat-select-content",driver,"6");
         	
-        	Thread.sleep(sleep_time);
-        	list.get(1).click(); 
-        	DropDownExecutor ("mat-select-content",driver,"25");
+        	//Thread.sleep(sleep_time);
+       // 	list.get(1).click(); 
+        //	DropDownExecutor ("mat-select-content",driver,"25");
         	
         	
-        }
-        if(row==5)
-        {
+      //  }
+     /*   if(row==5)
+        {*/
+        	e= childs.get(4);
+       	 list=  e.findElements(By.tagName("input"));
+       	 
         	list.get(0).sendKeys(" https://joveo-samplefeed.s3.amazonaws.com/abhinay/AbSample.xml");
            List<WebElement> btns=e.findElements(By.tagName("button"));
         	
@@ -146,10 +180,10 @@ System.setProperty("webdriver.chrome.driver","/usr/local/bin/chromedriver");
            // for(WebElement e3: list)
             //	System.out.println(e3.getText());
             
-        }
+       // }
        
-        if(row==8)
-        {
+      //  if(row==8)
+        //{
         	// SCROLL-DOWN METHOD-1
         //	 jsdriver.executeScript("arguments[0].scrollIntoView();",e);
         	
@@ -157,16 +191,21 @@ System.setProperty("webdriver.chrome.driver","/usr/local/bin/chromedriver");
         	//while(!e.isDisplayed())
         	//	prv.sendKeys(Keys.PAGE_DOWN);
         	
-        		
+           e= childs.get(7);
+      	 list=  e.findElements(By.tagName("input"));	
+           
         	e.findElement(By.tagName("jv-multiselect")).click();
         	Thread.sleep(sleep_time);
         	
         	searchDropdownComboExecutor ("mat-select-content",driver);
         	list.get(0).sendKeys("8877");
-        }
+       // }
         
-        if(row==9)
-        {
+     //   if(row==9)
+       // {
+        	
+        	e= childs.get(8);
+       	 list=  e.findElements(By.tagName("input"));
             list= e.findElements(By.tagName("mat-form-field"));
         
           WebElement st_elmnt = list.get(0).findElement(By.tagName("input"));
@@ -179,20 +218,23 @@ System.setProperty("webdriver.chrome.driver","/usr/local/bin/chromedriver");
           Thread.sleep(sleep_time);
           
           setDate(end_elmnt,driver,"2024","SEP","27");
-           }
+         //  }
         
-        if(row==10)
-        {
+      //  if(row==10)
+        //{
+          e= childs.get(9);
+     	// list=  e.findElements(By.tagName("input"));
+          
         	e.findElement(By.tagName("jv-multiselect")).click();
         	searchDropdownComboExecutor ("mat-select-content",driver);
-        	break;
-        }
+//        	break;
+        //}*/
         
         
        //  prv=e;
         
-        row++;
-    }
+    //    row++;
+  //  }
     
     
        
@@ -251,7 +293,9 @@ System.setProperty("webdriver.chrome.driver","/usr/local/bin/chromedriver");
   {
 	  List<WebElement> list= new ArrayList<WebElement>();
 	  
-	  Thread.sleep(sleep_time);
+	//  Thread.sleep(sleep_time);
+	  new WebDriverWait(driver,5).until(ExpectedConditions.visibilityOf(driver.findElement(By.tagName("span"))));
+	  
   	list=driver.findElements(By.tagName("span"));
   	
   	for(WebElement e3:list)
@@ -272,8 +316,11 @@ System.setProperty("webdriver.chrome.driver","/usr/local/bin/chromedriver");
 		WebElement parent;
 		List<WebElement> list= new ArrayList<WebElement>();
 		
-		Thread.sleep(sleep_time);
+		//Thread.sleep(sleep_time);
+		
 		parent=driver.findElement(By.className(CLASS));
+		new WebDriverWait(driver,5).until(ExpectedConditions.visibilityOf(parent.findElement(By.tagName("input"))));
+		//parent=driver.findElement(By.className(CLASS));
     	parent.findElement(By.tagName("input")).sendKeys("H");
     	
      	list=driver.findElements(By.tagName("mat-option"));
